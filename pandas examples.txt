@@ -1,0 +1,214 @@
+print("hello welcome to new world")
+
+import pandas as pd
+import numpy as np
+
+
+df=pd.DataFrame(np.arange(0,20).reshape(5,4),index=['Row1','Row2','Row3','Row4','Row5'],columns=['Column1','Column2','Column3','Column4'])
+df.head()
+
+df.to_csv('Test1.csv')
+df.loc['Row1']
+
+type(df.loc['Row1'])
+
+df['Column1']
+
+df[['Column1','Column2']]
+
+df.iloc[0:2,0]
+
+type(df.iloc[0:2,0])
+
+df.iloc[:,:]
+
+df.iloc[0:3,0:2]
+
+type(df.iloc[0:3,0:2])
+
+df.iloc[0:2,0:1]
+
+type(df.iloc[0:2,0:1])
+
+df.iloc[:,1:]
+
+df.iloc[:,1:].values
+
+df.isnull().sum()
+
+df
+
+#to find the unique value in the row or column
+df['Column1'].value_counts()
+
+df['Column1'].unique()
+
+#next for read pandas
+df.info()
+
+test_df=pd.read_csv('test1.csv',sep=';')
+test_df.head()
+
+
+test_df=pd.read_csv('mercedesbenz.csv')
+test_df.head()
+
+#inbuilt  function
+test_df.info()
+
+#inbuilt  function
+test_df.describe()
+
+#for which category it shows that how many times it is present
+#inbuilt  function
+test_df['X0'].value_counts()
+
+from io import StringIO,BytesIO
+
+data=('col1,col2,col3\n'
+     'x,y,z\n'
+     'a,b,2\n'
+     'c,d,3')
+
+type(data)
+
+StringIO()
+
+pd.read_csv(StringIO(data))
+
+df=pd.read_csv(StringIO(data),usecols=['col1','col3'])
+df
+
+#to return this value in csv file 
+df.to_csv('test2.csv')
+
+from io import StringIO,BytesIO
+
+data=('col1,col2,col3\n'
+     'x,y,z\n'
+     'a,b,2\n'
+     'c,d,3')
+
+
+
+#object means it convert dataset into string types
+df=pd.read_csv(StringIO(data),dtype=object)
+df
+
+
+
+df['col1']
+
+df['col1'][1]
+
+data=('a,b,c\n'
+     '1,2,3\n'
+     '9,5,2\n'
+     '6,7,8')
+
+df=pd.read_csv(StringIO(data),dtype=int)
+df
+
+df['a']
+
+df['a'][1]
+
+df=pd.read_csv(StringIO(data),dtype=float)
+df
+
+df['a']
+
+#to creat different data types in separate columns
+df=pd.read_csv(StringIO(data),dtype={'b':int,'c':float,'a':'Int64'})
+
+df
+
+df['a']
+
+df['c']
+
+type(df['c'][1])
+
+df.dtypes
+
+data=('index,a,b,c\n'
+     '4,apple,bats,5.7\n'
+     '8,orange,cow,10')
+
+df=pd.read_csv(StringIO(data))
+df
+
+#to make the index value
+df=pd.read_csv(StringIO(data),index_col=0)
+df
+
+#here i have put comma behind 5.7 and 10
+data=('a,b,c\n'
+     'apple,bats,5.7,\n'
+     'orange,cow,10,')
+
+df=pd.read_csv(StringIO(data))
+df
+
+pd.read_csv(StringIO(data),index_col=False)
+
+#combining usecol and index_col
+data=('a,b,c\n'
+     'apple,bats,5.7,\n'
+     'orange,cow,10,')
+
+pd.read_csv(StringIO(data),usecols=['b','c'],index_col=False)
+
+#quoting and escape characters
+data='a,b\n"hello, \\"Bob\\", nice to see you",5'
+
+pd.read_csv(StringIO(data),escapechar='\\')
+
+#to separate the value
+df=pd.read_csv('csv_file',sep='\t')
+
+df.head()
+
+#Read json to csv
+Data='{"employee_name":"James","email":"chaudharykumar228@gmail.com","job_profile":[{"title1":"team lead","title2":"sr.Developer"}]}'
+pd.read_json(Data)
+
+
+Data='{"employee_name":"James","email":"chaudharykumar228@gmail.com","job_profile":[{"title1":"team lead","title2":"sr.Developer"}]}'
+pd.read_json(Data,"job_profile")
+
+
+df=pd.read_csv('json_file',header=None)
+
+df.head()
+
+#convert json to csv file
+df.to_csv('json_to_csv_file')
+
+df.to_json(orient="records")
+
+Data='{"employee_name":"James","email":"chaudharykumar228@gmail.com","job_profile":[{"title1":"team lead","title2":"sr.Developer"}]}'
+df1=pd.read_json(Data)
+
+
+df1
+
+df1.to_json()
+
+df1.to_json(orient="records")
+
+conda install html5
+
+pip install html5
+
+#Read HTML content
+url='https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/'
+dfs=pd.read_html(url)
+dfs[0]
+
+url_mcc='https://en.wikipedia.org/wiki/Mobile_country_code'
+dfs=pd.read_html(url_mcc,match='Mobile network codes',header=0)
+dfs[0]
+
+
+
